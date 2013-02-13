@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+   Hackerspace Bremen Android App - An Open-Space-Notifier for Android
+   
+   Copyright (C) 2012 Steve Liedtke <sliedtke57@gmail.com>
+
+   This program is free software; you can redistribute it and/or modify it under the terms of the
+   GNU General Public License as published by the Free Software Foundation; either version 3 of
+   the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY
+   without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See 
+   the GNU General Public License for more details.
+
+   You can find a copy of the GNU General Public License on http://www.gnu.org/licenses/gpl.html.
+
+   Contributors:
+       Steve Liedtke <sliedtke57@gmail.com>
+       Matthias Friedrich <mtthsfrdrch@gmail.com>
+-->
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="90dp"
+  android:background="@drawable/bg_appwidget">
+  
+    <ImageView
+        android:id="@+id/indicatorImage"
+        android:layout_centerInParent="true"
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:visibility="invisible"/>
+    
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_error"
+        android:id="@+id/errorText"
+    /> 
+  
+</RelativeLayout>

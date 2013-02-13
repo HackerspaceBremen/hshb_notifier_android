@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Hackerspace Bremen Android App - An Open-Space-Notifier for Android
+   
+   Copyright (C) 2012 Steve Liedtke <sliedtke57@gmail.com>
+
+   This program is free software; you can redistribute it and/or modify it under the terms of the
+   GNU General Public License as published by the Free Software Foundation; either version 3 of
+   the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY
+   without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See 
+   the GNU General Public License for more details.
+
+   You can find a copy of the GNU General Public License on http://www.gnu.org/licenses/gpl.html.
+
+   Contributors:
+       Steve Liedtke <sliedtke57@gmail.com>
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/change_form"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_box" >
+
+    <TextView
+        android:id="@+id/change_introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/login_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/change_introduction"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/login_label"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/login_label"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/login"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/password_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_block"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/password_label"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/password_label"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:inputType="textPassword" />
+    </LinearLayout>
+    
+    <CheckBox 
+            android:id="@+id/save_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password_block"
+            android:layout_alignParentRight="true"
+            android:text="@string/save_login"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+    />
+    
+    <LinearLayout
+        android:id="@+id/message_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/save_login"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/message_label"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/message_label"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:inputType="textMultiLine"
+            android:lines="4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message_block"
+        android:layout_marginTop="5dp" >
+
+        <Button
+            android:id="@+id/abort_btn"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/abort"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/send_btn"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/send"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Hackerspace Bremen Android App - An Open-Space-Notifier for Android
+   
+   Copyright (C) 2012 Steve Liedtke <sliedtke57@gmail.com>
+
+   This program is free software; you can redistribute it and/or modify it under the terms of the
+   GNU General Public License as published by the Free Software Foundation; either version 3 of
+   the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY
+   without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See 
+   the GNU General Public License for more details.
+
+   You can find a copy of the GNU General Public License on http://www.gnu.org/licenses/gpl.html.
+
+   Contributors:
+       Steve Liedtke <sliedtke57@gmail.com>
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/status"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_box" >
+
+        <ImageView
+            android:id="@+id/conn_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/content_descr_conn_error"
+            android:src="@drawable/symbol_exclamation"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/clock_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/conn_error"
+            android:contentDescription="@string/content_descr_loading" />
+
+        <TextView
+            android:id="@+id/status_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/clock_status"
+            android:text="@string/fetch_status"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/message_block"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_box"
+        android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/message_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="false"
+            android:layout_marginLeft="5dp"
+            android:text="@string/status_message"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/message_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/message_label"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:text="@string/fetch_message"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </RelativeLayout>
+
+</LinearLayout>
