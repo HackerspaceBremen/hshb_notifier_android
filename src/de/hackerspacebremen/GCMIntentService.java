@@ -46,7 +46,6 @@ import android.widget.RemoteViews;
 import com.google.android.gcm.GCMBaseIntentService;
 
 import de.greenrobot.event.EventBus;
-import de.greenrobot.event.ThreadMode;
 import de.hackerspacebremen.common.Constants;
 import de.hackerspacebremen.communication.HackerspaceComm;
 import de.hackerspacebremen.event.DataEvent;

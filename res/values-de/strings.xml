@@ -37,7 +37,7 @@
 	<string name="connection_error">Es konnte keine Verbindung hergestellt werden! Stellen Sie eine Verbindung zum Internet her und versuchen Sie es erneut.</string>
 	<string name="content_descr_conn_error">Symbol wird gezeigt wenn keine Verbindung hergestellt werden konnte</string>
 	<string name="content_descr_loading">Symbol wird gezeigt wenn die App auf Daten wartet.</string>
-	<string name="change_text">Nur registrierte Mitglieder des Hackerspace können den Status des Spaces ändern.</string>
+	<string name="change_text">Nur Mitglieder des Hackerspace können den Status des Spaces ändern.</string>
 	<string name="login_label">Login:</string>
 	<string name="password_label">Passwort:</string>
 	<string name="message_label">Statusnachricht:</string>
@@ -50,7 +50,7 @@
 	<string name="change_error_damn">Mist</string>
 	<string name="change_error">Ein unbekannter Fehler ist aufgetreten! Versuchen Sie es später nochmal.</string>
 	<string name="change_error_0">Es konnte keine Verbindung hergestellt werden! Stellen Sie eine Verbindung zum Internet her und versuchen Sie es erneut.</string>
-	<string name="change_error_1">Entweder der eingegebene Login ist falsch oder Sie haben noch keine Berechtigungen den Space zu öffnen/schließen. Stellen Sie sicher, dass Sie sich registriert haben.</string>
+	<string name="change_error_1">Entweder der eingegebene Login ist falsch oder Sie haben noch keine Berechtigungen den Space zu öffnen/schließen.</string>
 	<string name="change_error_3">Der Space wurde bereits geöffnet!</string>
 	<string name="change_error_4">Der Space wurde bereits geschlossen!</string>
 	<string name="close_space">Schließen</string>
@@ -60,7 +60,7 @@
 	<string name="validate_login">Der Login-Name muss mindestens 4 Zeichen lang sein</string>
 	<string name="validate_pwd">Das Passwort muss mindestens 4 Zeichen lang sein</string>
 	<string name="about_icon">Das Logo welches im Google Play Store benutzt wird</string>
-	<string name="about_text">Diese App wurde für dem Hackerspace Bremen e.V. erstellt. Steve Liedtke hat diese App entwickelt. Der Quellcode kann auf Google Code eingesehen werden: http://code.google.com/p/hackerspace-bremen/</string>
+	<string name="about_text">Diese App wurde für dem Hackerspace Bremen e.V. erstellt. Steve Liedtke hat diese App entwickelt. Der Quellcode findet sich auf Github: https://github.com/HackerspaceBremen/hshb_notifier_android</string>
 	<string name="about_version">Version:</string>
 	<string name="about_title">Hackerspace Bremen Android App</string>
 	<string name="save_login">Passwort merken?</string>

@@ -49,6 +49,8 @@ public final class Constants {
 	
 	private static final String PROD_ID = "337835721184";
 	
+	public static final String UTF8 = "UTF-8";
+	
 	private static void SET_SENDER_ID(boolean prod){
 		if(prod){
 			SENDER_ID = PROD_ID;
