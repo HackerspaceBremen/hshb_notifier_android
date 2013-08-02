@@ -8,8 +8,6 @@ Developed By
 
 * Steve Liedtke - <sliedtke57@gmail.com>
 
-
-
 License
 =======
 
