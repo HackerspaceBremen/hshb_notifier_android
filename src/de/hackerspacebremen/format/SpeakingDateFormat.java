@@ -35,7 +35,7 @@ public final class SpeakingDateFormat {
 	
 	private static final DateTimeFormatter FMT_DATE_YEAR = DateTimeFormat.forPattern("dd.MM.yyyy");
 	
-	private static String[] FORMAT_ADS = {"Heute", "Gestern", "um", "Uhr"};
+	private static String[] FORMAT_ADS = {"heute", "gestern", "um", "Uhr"};
 	
 	private static String[] WEEKDAYS = {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
 	

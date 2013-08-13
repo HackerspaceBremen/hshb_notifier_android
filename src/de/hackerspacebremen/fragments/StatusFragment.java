@@ -323,7 +323,7 @@ public class StatusFragment extends SherlockFragment {
 			super();
 			this.httpReq = true;
 			this.getReq = true;
-			this.servletUrl = "status";
+			this.servletUrl = "v2/status";
 			StatusFragment.this.commDone = false;
 			try {
 				this.appVersionName = getActivity().getPackageManager()

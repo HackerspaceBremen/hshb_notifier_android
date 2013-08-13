@@ -309,9 +309,9 @@ public final class ChangeStatusFragment extends SherlockFragment {
 			this.getReq = false;
 			if (((HackerspaceApplication) ChangeStatusFragment.this
 					.getActivity().getApplication()).spaceOpen) {
-				this.servletUrl = "cmd/close";
+				this.servletUrl = "v2/cmd/close";
 			} else {
-				this.servletUrl = "cmd/open";
+				this.servletUrl = "v2/cmd/open";
 			}
 
 			data = new SpaceData(

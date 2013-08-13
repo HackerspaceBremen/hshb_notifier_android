@@ -46,7 +46,6 @@ import android.widget.RemoteViews;
 import com.google.android.gcm.GCMBaseIntentService;
 
 import de.greenrobot.event.EventBus;
-import de.greenrobot.event.ThreadMode;
 import de.hackerspacebremen.common.Constants;
 import de.hackerspacebremen.communication.HackerspaceComm;
 import de.hackerspacebremen.event.DataEvent;
@@ -221,7 +220,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			super();
 			this.httpReq = false;
 			this.getReq = false;
-			this.servletUrl = "register";
+			this.servletUrl = "/v2/gcm/register";
 			this.postParams.add(new BasicNameValuePair("deviceId", Uri
 					.encode(deviceId)));
 			this.postParams.add(new BasicNameValuePair("registrationId", Uri
@@ -252,7 +251,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			super();
 			this.httpReq = false;
 			this.getReq = false;
-			this.servletUrl = "unregister";
+			this.servletUrl = "/v2/gcm/unregister";
 			this.postParams.add(new BasicNameValuePair("deviceId", Uri
 					.encode(deviceId)));
 			try {
