@@ -309,9 +309,9 @@ public final class ChangeStatusFragment extends SherlockFragment {
 			this.getReq = false;
 			if (((HackerspaceApplication) ChangeStatusFragment.this
 					.getActivity().getApplication()).spaceOpen) {
-				this.servletUrl = "cmd/close";
+				this.servletUrl = "v2/cmd/close";
 			} else {
-				this.servletUrl = "cmd/open";
+				this.servletUrl = "v2/cmd/open";
 			}
 
 			data = new SpaceData(
@@ -319,6 +319,7 @@ public final class ChangeStatusFragment extends SherlockFragment {
 							.getActivity().getApplication()).spaceOpen);
 			data.setMessage(message);
 			data.setTime(new Date());
+			
 			try{
 				this.postParams
 						.add(new BasicNameValuePair("name", URLEncoder.encode(name,Constants.UTF8)));
@@ -328,9 +329,10 @@ public final class ChangeStatusFragment extends SherlockFragment {
 					this.postParams.add(new BasicNameValuePair("message", URLEncoder.encode(message, Constants.UTF8)));
 				}
 			}catch(UnsupportedEncodingException e){
-				// TODO log here
+				Log.e(ChangeCommunication.class.getName(), "UnsupportedEncodingException occured: " + e.getMessage());
 			}
 			this.postParams.add(new BasicNameValuePair("encoded", "true"));
+			
 			try {
 				this.appVersionName = getActivity().getPackageManager()
 						.getPackageInfo(getActivity().getPackageName(), 0).versionName;

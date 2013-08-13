@@ -27,7 +27,7 @@ public final class Constants {
 	
 	static{
 		// CHANGE HERE if you switch between prod and test
-		boolean prod = false;
+		boolean prod = true;
 		PROD = prod;
 		
 		SET_SENDER_ID(prod);
@@ -44,6 +44,8 @@ public final class Constants {
 	public final static String SPACE_OPEN_DATA_KEY = "spaceOpenDataKey";
 	
 	public final static String SPACE_TIME_DATA_KEY = "spaceTimeDataKey";
+	
+	public static final String UTF8 = "UTF-8";
 	
 	private static final String TEST_ID = "1044406323224";
 	

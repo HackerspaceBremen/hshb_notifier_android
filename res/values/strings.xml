@@ -37,7 +37,7 @@
 	<string name="content_descr_conn_error">Image shown incase an connection error occurred</string>
 	<string name="content_descr_loading">Image shown when the app is waiting for data</string>
 	<string name="connection_error">The connection to the server wasn\'t established! Reload or connect to the internet.</string>
-	<string name="change_text">Only members of the Hackerspace Bremen are allowed to change the status of the space.</string>
+	<string name="change_text">Only members of the Hackerspace Bremen can change the status of the space.</string>
 	<string name="login_label">Login:</string>
 	<string name="password_label">Password:</string>
 	<string name="message_label">Message:</string>
@@ -50,7 +50,7 @@
 	<string name="change_error_damn">Damn</string>
 	<string name="change_error">An unknown error occurred! Please try later</string>
 	<string name="change_error_0">The connection to the server wasn\'t established! Try again or connect to the internet.</string>
-	<string name="change_error_1">Either you typed your login wrong or you don\'t have permission to open/close the space.</string>
+	<string name="change_error_1">Either you typed your login wrong or you don\'t have permission to open/close the space. </string>
 	<string name="change_error_3">The space was already opened!</string>
 	<string name="change_error_4">The space was already closed!</string>
 	<string name="close_space">Close</string>
