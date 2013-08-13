@@ -19,12 +19,9 @@
 package de.hackerspacebremen;
 
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-
-import de.hackerspacebremen.R;
-
-public class SettingActivity extends SherlockPreferenceActivity{
+public class SettingActivity extends PreferenceActivity{
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {

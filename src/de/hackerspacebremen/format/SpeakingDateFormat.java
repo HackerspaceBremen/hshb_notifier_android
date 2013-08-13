@@ -35,7 +35,7 @@ public final class SpeakingDateFormat {
 	
 	private static final DateTimeFormatter FMT_DATE_YEAR = DateTimeFormat.forPattern("dd.MM.yyyy");
 	
-	private static String[] FORMAT_ADS = {"heute", "gestern", "um", "Uhr"};
+	private static String[] FORMAT_ADDITIONS = {"heute", "gestern", "um", "Uhr"};
 	
 	private static String[] WEEKDAYS = {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
 	
@@ -44,7 +44,7 @@ public final class SpeakingDateFormat {
 	}
 	
 	public static void setFormatAds(final String[] formatTextAds){
-		FORMAT_ADS = formatTextAds;
+		FORMAT_ADDITIONS = formatTextAds;
 	}
 	
 	public static void setWeekdayAds(final String[] weekdayAds){
@@ -55,15 +55,15 @@ public final class SpeakingDateFormat {
 		final DateTime dateTime = new DateTime(date, ZONE);
 		final String result;
 		if(isToday(dateTime)){
-			 result = FORMAT_ADS[0] + ", " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADS[3];
+			 result = FORMAT_ADDITIONS[0] + ", " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADDITIONS[3];
 		}else if(isYesterday(dateTime)){
-			result = FORMAT_ADS[1] + ", " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADS[3];
+			result = FORMAT_ADDITIONS[1] + ", " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADDITIONS[3];
 		}else if(isMax6DaysAgo(dateTime)){
-			result = WEEKDAYS[dateTime.getDayOfWeek()-1] + ", " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADS[3];
+			result = WEEKDAYS[dateTime.getDayOfWeek()-1] + ", " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADDITIONS[3];
 		}else if(isThisYear(dateTime)){
-			result = FMT_DATE.print(dateTime) + " " + FORMAT_ADS[2] + " " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADS[3];
+			result = FMT_DATE.print(dateTime) + " " + FORMAT_ADDITIONS[2] + " " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADDITIONS[3];
 		}else{
-			result = FMT_DATE_YEAR.print(dateTime) + " " + FORMAT_ADS[2] + " " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADS[3];
+			result = FMT_DATE_YEAR.print(dateTime) + " " + FORMAT_ADDITIONS[2] + " " + FMT_CLOCK.print(dateTime) + " " + FORMAT_ADDITIONS[3];
 		}
 		
 		return result;

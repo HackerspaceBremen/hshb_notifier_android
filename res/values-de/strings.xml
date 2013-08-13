@@ -32,6 +32,7 @@
 	<string name="notification_status">Erlaube Benachrichtigungen</string>
 	<string name="settings">Einstellungen</string>
 	<string name="vibrate_enable">Erlaube Vibration</string>
+	<string name="permanent_notification_enable">Permanente \'Space offen\' Benachrichtigung</string>
 	<string name="status_message">Statusnachricht:</string>
 	<string name="data_error">Konnte Daten nicht abfragen!"</string>
 	<string name="connection_error">Es konnte keine Verbindung hergestellt werden! Stellen Sie eine Verbindung zum Internet her und versuchen Sie es erneut.</string>
@@ -66,4 +67,37 @@
 	<string name="save_login">Passwort merken?</string>
 	<string name="map">Standort</string>
 	<string name="news">Neuigkeiten</string>
+	<string name="gcm_service_class">de.hackerspacebremen.gcm.GCMIntentService</string>
+	
+	<!-- Values of support-v7 -->
+	<!-- Label for the "Done" button on the far left of action mode toolbars. -->
+    <string name="abc_action_mode_done">Fertig</string>
+    <!-- Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] -->
+    <string name="abc_action_bar_home_description">Zu Home</string>
+    <!-- Content description for the action bar "up" affordance. [CHAR LIMIT=NONE] -->
+    <string name="abc_action_bar_up_description">Gehe hoch</string>
+    <!-- Content description for the action menu overflow button. [CHAR LIMIT=NONE] -->
+    <string name="abc_action_menu_overflow_description">Mehr Optionen</string>
+
+    <!-- SearchView accessibility description for search button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_search">Suche</string>
+    <!-- SearchView accessibility description for search text field [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_query">Suchfilter</string>
+    <!-- SearchView accessibility description for clear button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_clear">Lösche Filter</string>
+    <!-- SearchView accessibility description for submit button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_submit">Durchführen</string>
+    <!-- SearchView accessibility description for voice button [CHAR LIMIT=NONE] -->
+    <string name="abc_searchview_description_voice">Sprachsuche</string>
+
+    <!-- ActivityChooserView - accessibility support -->
+    <!-- Description of the shwoing of a popup window with activities to choose from. [CHAR LIMIT=NONE] -->
+    <string name="abc_activitychooserview_choose_application">Wähle eine App</string>
+    <!-- Title for a button to expand the list of activities in ActivityChooserView [CHAR LIMIT=25] -->
+    <string name="abc_activity_chooser_view_see_all">Alle ansehen</string>
+    <!-- Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] -->
+    <string name="abc_shareactionprovider_share_with_application">Teile mit %s</string>
+    <!-- Description of the choose target button in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] -->
+    <string name="abc_shareactionprovider_share_with">Teile mit</string>
+		
 </resources>

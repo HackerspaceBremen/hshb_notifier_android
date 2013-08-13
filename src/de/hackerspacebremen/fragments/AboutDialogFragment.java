@@ -20,13 +20,13 @@ package de.hackerspacebremen.fragments;
 
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
 
 import de.hackerspacebremen.R;
 
@@ -34,7 +34,7 @@ import de.hackerspacebremen.R;
  * @author Steve
  *
  */
-public final class AboutDialogFragment extends SherlockDialogFragment{
+public final class AboutDialogFragment extends DialogFragment{
 
 	/* (non-Javadoc)
 	 * @see android.support.v4.app.DialogFragment#onCreate(android.os.Bundle)

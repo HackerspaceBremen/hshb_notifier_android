@@ -33,15 +33,13 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-
-import com.actionbarsherlock.app.SherlockFragment;
-
 import de.greenrobot.event.EventBus;
 import de.hackerspacebremen.HackerspaceApplication;
 import de.hackerspacebremen.R;
@@ -66,7 +64,7 @@ import de.neofonie.mobile.app.android.widget.crouton.Style;
  * 
  * @author Steve Liedtke
  */
-public final class ChangeStatusFragment extends SherlockFragment {
+public final class ChangeStatusFragment extends Fragment {
 
 	private ChangeCommunication comm = null;
 

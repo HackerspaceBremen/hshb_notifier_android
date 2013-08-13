@@ -32,6 +32,7 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,12 +43,10 @@ import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragment;
 import com.google.android.gcm.GCMRegistrar;
 
 import de.greenrobot.event.EventBus;
 import de.hackerspacebremen.HackerspaceApplication;
-import de.hackerspacebremen.HackerspaceWidgetProvider;
 import de.hackerspacebremen.R;
 import de.hackerspacebremen.common.Constants;
 import de.hackerspacebremen.communication.HackerspaceComm;
@@ -57,8 +56,9 @@ import de.hackerspacebremen.format.SpeakingDateFormat;
 import de.hackerspacebremen.valueobjects.SpaceData;
 import de.hackerspacebremen.valueobjects.parser.SpaceDataJsonParser;
 import de.hackerspacebremen.viewholders.StatusViewHolder;
+import de.hackerspacebremen.widgets.HackerspaceWidgetProvider;
 
-public class StatusFragment extends SherlockFragment {
+public class StatusFragment extends Fragment {
 
 	private AnimationDrawable statusAnimation;
 

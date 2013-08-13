@@ -16,28 +16,22 @@
  * Contributors:
  *     Steve Liedtke <sliedtke57@gmail.com>
  */
-package de.hackerspacebremen.fragments;
+package de.hackerspacebremen.gcm;
 
-import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.widget.ArrayAdapter;
+import android.content.Context;
+
+import com.google.android.gcm.GCMBroadcastReceiver;
+
+import de.hackerspacebremen.R;
 
 /**
  * @author Steve
  *
  */
-public class NewsFragment extends ListFragment{
+public class GCMReceiver extends GCMBroadcastReceiver{
 
-	// TODO use http://chili.hackerspace-bremen.de/news.atom data
-	private static final String[] TEST_DATA = {"text1", "text2"};
-	
-	/* (non-Javadoc)
-	 * @see android.support.v4.app.Fragment#onActivityCreated(android.os.Bundle)
-	 */
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		setListAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, TEST_DATA));
+	protected String getGCMIntentServiceClassName(Context context) {
+		return context.getString(R.string.gcm_service_class);
 	}
 }

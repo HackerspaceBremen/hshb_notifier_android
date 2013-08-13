@@ -19,19 +19,17 @@
 package de.hackerspacebremen.fragments;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.actionbarsherlock.app.SherlockFragment;
-
 import de.hackerspacebremen.R;
 
 /**
  * @author Steve
  *
  */
-public class EmptyFragment extends SherlockFragment{
+public class EmptyFragment extends Fragment{
 
 	
 	/* (non-Javadoc)

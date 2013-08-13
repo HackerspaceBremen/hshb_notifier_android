@@ -17,7 +17,7 @@
  *     Steve Liedtke <sliedtke57@gmail.com>
  *     Matthias Friedrich <mtthsfrdrch@gmail.com>
  */
-package de.hackerspacebremen;
+package de.hackerspacebremen.widgets;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -25,6 +25,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import de.hackerspacebremen.R;
 import de.hackerspacebremen.common.Constants;
 
 /**

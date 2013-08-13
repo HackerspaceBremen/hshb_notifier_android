@@ -17,7 +17,7 @@
  *     Steve Liedtke <sliedtke57@gmail.com>
  *     Matthias Friedrich <mtthsfrdrch@gmail.com>
  */
-package de.hackerspacebremen;
+package de.hackerspacebremen.gcm;
 
 import java.util.Date;
 import java.util.UUID;
@@ -46,6 +46,8 @@ import android.widget.RemoteViews;
 import com.google.android.gcm.GCMBaseIntentService;
 
 import de.greenrobot.event.EventBus;
+import de.hackerspacebremen.R;
+import de.hackerspacebremen.StartActivity;
 import de.hackerspacebremen.common.Constants;
 import de.hackerspacebremen.communication.HackerspaceComm;
 import de.hackerspacebremen.event.DataEvent;
@@ -53,6 +55,7 @@ import de.hackerspacebremen.event.StatusChanged;
 import de.hackerspacebremen.format.SpeakingDateFormat;
 import de.hackerspacebremen.valueobjects.SpaceData;
 import de.hackerspacebremen.valueobjects.parser.SpaceDataJsonParser;
+import de.hackerspacebremen.widgets.HackerspaceWidgetProvider;
 
 public class GCMIntentService extends GCMBaseIntentService {
 
@@ -114,6 +117,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		Log.d("GCM-Message", "dmControl: payload = " + payload);
 		try {
 		    
+			
 		    SpaceData data = SpaceDataJsonParser.parse(new JSONObject(payload));
 		    
 			SharedPreferences settings = PreferenceManager
@@ -128,7 +132,8 @@ public class GCMIntentService extends GCMBaseIntentService {
 			
 			if(settings.getBoolean("notification_preference", true)){
 				this.displayNotification(context, data,
-						settings.getBoolean("vibration_preference", true));
+						settings.getBoolean("vibration_preference", true), 
+						settings.getBoolean("permanent_notification_preference", false));
 			}
 			
 			updateAppWidget(context, data);
@@ -139,10 +144,12 @@ public class GCMIntentService extends GCMBaseIntentService {
 	}
 	
 	public void displayNotification(final Context context, final SpaceData data,
-			final boolean vibrationEnabled) throws JSONException {
+			final boolean vibrationEnabled, final boolean permanentNotification) throws JSONException {
 		String ns = Context.NOTIFICATION_SERVICE;
 		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(ns);
 
+		final boolean permanent = permanentNotification && data.isSpaceOpen();
+		
 		String timeString = context.getString(R.string.unknown);
 		Date time = data.getTime();
         if (time != null) {
@@ -168,18 +175,23 @@ public class GCMIntentService extends GCMBaseIntentService {
 		builder.setSmallIcon(icon);
 		builder.setTicker(notificationText);
 		builder.setWhen(when);
-		builder.setAutoCancel(true);
-		final Notification notification = builder.getNotification();
-		if(vibrationEnabled){
-			notification.defaults |= Notification.DEFAULT_VIBRATE;
-		}
+		if(!permanent){
+			builder.setAutoCancel(true);
+		 }
+		builder.setContentTitle(contentTitle);
+		builder.setContentText(notificationText);
 		Intent notificationIntent = new Intent(context, StartActivity.class);
 		notificationIntent.putExtra("status_json", SpaceDataJsonParser.parse(data).toString());
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
-		builder.setDeleteIntent(contentIntent);
-
-		notification.setLatestEventInfo(context, contentTitle, notificationText, contentIntent);
+		builder.setContentIntent(contentIntent);
 		
+		final Notification notification = builder.build();
+		if(vibrationEnabled){
+			notification.defaults |= Notification.DEFAULT_VIBRATE;
+		}
+		if(permanent){
+			notification.flags |= Notification.FLAG_ONGOING_EVENT;
+		}
 		mNotificationManager.notify(81543, notification);
 	}
 	
@@ -220,7 +232,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			super();
 			this.httpReq = false;
 			this.getReq = false;
-			this.servletUrl = "/v2/gcm/register";
+			this.servletUrl = "v2/gcm/register";
 			this.postParams.add(new BasicNameValuePair("deviceId", Uri
 					.encode(deviceId)));
 			this.postParams.add(new BasicNameValuePair("registrationId", Uri
@@ -251,7 +263,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			super();
 			this.httpReq = false;
 			this.getReq = false;
-			this.servletUrl = "/v2/gcm/unregister";
+			this.servletUrl = "v2/gcm/unregister";
 			this.postParams.add(new BasicNameValuePair("deviceId", Uri
 					.encode(deviceId)));
 			try {

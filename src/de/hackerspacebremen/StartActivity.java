@@ -22,16 +22,15 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-
-import com.actionbarsherlock.app.SherlockDialogFragment;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 import de.greenrobot.event.EventBus;
 import de.hackerspacebremen.common.FragmentState;
@@ -45,7 +44,7 @@ import de.hackerspacebremen.fragments.StatusFragment;
 import de.hackerspacebremen.valueobjects.parser.ChangeDataJsonParser;
 import de.neofonie.mobile.app.android.widget.crouton.Crouton;
 
-public class StartActivity extends SherlockFragmentActivity {
+public class StartActivity extends FragmentActivity {
 
 	private FragmentState state = null;
 
@@ -100,8 +99,6 @@ public class StartActivity extends SherlockFragmentActivity {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.actionbarsherlock.app.SherlockFragmentActivity#onStop()
 	 */
 	@Override
 	protected void onStop() {
@@ -132,7 +129,7 @@ public class StartActivity extends SherlockFragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		final MenuInflater inflater = this.getSupportMenuInflater();
+		final MenuInflater inflater = this.getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
 		if(this.state == FragmentState.CHANGE_SHOWN){
 			menu.getItem(1).setVisible(false);
@@ -169,7 +166,7 @@ public class StartActivity extends SherlockFragmentActivity {
 			// use support library with fragment dialog instead
 			final FragmentTransaction transaction = this
 					.getSupportFragmentManager().beginTransaction();
-			final SherlockDialogFragment newFragment = new AboutDialogFragment();
+			final DialogFragment newFragment = new AboutDialogFragment();
 			newFragment.show(transaction, "dialog");
 			break;
 		case R.id.refresh:

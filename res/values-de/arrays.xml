@@ -19,8 +19,8 @@
 -->
 <resources>
 	 <string-array name="format_ads">
-	    <item>Heute</item>
-	    <item>Gestern</item>
+	    <item>heute</item>
+	    <item>gestern</item>
 		<item>um</item>
 		<item>Uhr</item>
 	</string-array>
