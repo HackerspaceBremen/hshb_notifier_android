@@ -37,7 +37,7 @@
 	<string name="content_descr_conn_error">Image shown incase an connection error occurred</string>
 	<string name="content_descr_loading">Image shown when the app is waiting for data</string>
 	<string name="connection_error">The connection to the server wasn\'t established! Reload or connect to the internet.</string>
-	<string name="change_text">Only registrated members of the Hackerspace Bremen can change the status of the space.</string>
+	<string name="change_text">Only members of the Hackerspace Bremen can change the status of the space.</string>
 	<string name="login_label">Login:</string>
 	<string name="password_label">Password:</string>
 	<string name="message_label">Message:</string>
@@ -50,7 +50,7 @@
 	<string name="change_error_damn">Damn</string>
 	<string name="change_error">An unknown error occurred! Please try later</string>
 	<string name="change_error_0">The connection to the server wasn\'t established! Try again or connect to the internet.</string>
-	<string name="change_error_1">Either you typed your login wrong or you don\'t have permission yet to open/close the space. Make sure your registered already!</string>
+	<string name="change_error_1">Either you typed your login wrong or you don\'t have permission to open/close the space. </string>
 	<string name="change_error_3">The space was already opened!</string>
 	<string name="change_error_4">The space was already closed!</string>
 	<string name="close_space">Close</string>
@@ -60,7 +60,7 @@
 	<string name="validate_login">The login must be at least 4 characters long</string>
 	<string name="validate_pwd">The password must be at least 4 characters long</string>
 	<string name="about_icon">The logo displayed in the Google Play Store</string>
-	<string name="about_text">This app was created for the Hackerspace Bremen e.V which is based in Germany. The app was developed by Steve Liedtke. The source code can be found on Google Code: http://code.google.com/p/hackerspace-bremen/</string>
+	<string name="about_text">This app was created for the Hackerspace Bremen e.V which is based in Germany. The app was developed by Steve Liedtke. The source code can be found on Github: https://github.com/HackerspaceBremen/hshb_notifier_android</string>
 	<string name="about_version">Version:</string>
 	<string name="about_title">Hackerspace Bremen Android App</string>
 	<string name="save_login">Remember login data?</string>

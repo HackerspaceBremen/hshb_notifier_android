@@ -30,10 +30,10 @@
 <!--           android:icon="@drawable/map" -->
 <!--           android:title="@string/map" -->
 <!--           android:showAsAction="ifRoom"/> -->
-	<item android:id="@+id/news"
-          android:icon="@drawable/news"
-          android:title="@string/news"
-          android:showAsAction="ifRoom"/>
+<!-- 	<item android:id="@+id/news" -->
+<!--           android:icon="@drawable/news" -->
+<!--           android:title="@string/news" -->
+<!--           android:showAsAction="ifRoom"/> -->
     <item android:id="@+id/about"
           android:icon="@drawable/info"
           android:title="@string/about"

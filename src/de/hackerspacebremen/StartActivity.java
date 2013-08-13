@@ -21,6 +21,7 @@ package de.hackerspacebremen;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -160,10 +161,10 @@ public class StartActivity extends SherlockFragmentActivity {
 //			this.manageFragment(FragmentState.MAP_SHOWN, null);
 //			item.setVisible(false);
 //			break;
-		case R.id.news:
-			this.manageFragment(FragmentState.NEWS_SHOWN, null);
-			item.setVisible(false);
-			break;
+//		case R.id.news:
+//			this.manageFragment(FragmentState.NEWS_SHOWN, null);
+//			item.setVisible(false);
+//			break;
 		case R.id.about:
 			// use support library with fragment dialog instead
 			final FragmentTransaction transaction = this
@@ -317,7 +318,7 @@ public class StartActivity extends SherlockFragmentActivity {
 			break;
 		}
 		this.state = state;
-		this.invalidateOptionsMenu();
+		ActivityCompat.invalidateOptionsMenu(this);
 	}
 
 	/**

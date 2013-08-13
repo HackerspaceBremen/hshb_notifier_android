@@ -18,6 +18,8 @@
  */
 package de.hackerspacebremen.fragments;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 
 import org.apache.http.message.BasicNameValuePair;
@@ -29,7 +31,6 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -44,6 +45,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import de.greenrobot.event.EventBus;
 import de.hackerspacebremen.HackerspaceApplication;
 import de.hackerspacebremen.R;
+import de.hackerspacebremen.common.Constants;
 import de.hackerspacebremen.common.FragmentState;
 import de.hackerspacebremen.communication.HackerspaceComm;
 import de.hackerspacebremen.event.DataEvent;
@@ -317,14 +319,20 @@ public final class ChangeStatusFragment extends SherlockFragment {
 							.getActivity().getApplication()).spaceOpen);
 			data.setMessage(message);
 			data.setTime(new Date());
-
-			this.postParams
-					.add(new BasicNameValuePair("name", Uri.encode(name)));
-			this.postParams
-					.add(new BasicNameValuePair("pass", Uri.encode(pass)));
-			if (message != null && message.length() > 0) {
-				this.postParams.add(new BasicNameValuePair("message", message));
+			
+			try{
+				this.postParams
+						.add(new BasicNameValuePair("name", URLEncoder.encode(name,Constants.UTF8)));
+				this.postParams
+						.add(new BasicNameValuePair("pass", URLEncoder.encode(pass, Constants.UTF8)));
+				if (message != null && message.length() > 0) {
+					this.postParams.add(new BasicNameValuePair("message", URLEncoder.encode(message, Constants.UTF8)));
+				}
+			}catch(UnsupportedEncodingException e){
+				Log.e(ChangeCommunication.class.getName(), "UnsupportedEncodingException occured: " + e.getMessage());
 			}
+			this.postParams.add(new BasicNameValuePair("encoded", "true"));
+			
 			try {
 				this.appVersionName = getActivity().getPackageManager()
 						.getPackageInfo(getActivity().getPackageName(), 0).versionName;

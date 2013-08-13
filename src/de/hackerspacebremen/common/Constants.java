@@ -45,6 +45,8 @@ public final class Constants {
 	
 	public final static String SPACE_TIME_DATA_KEY = "spaceTimeDataKey";
 	
+	public static final String UTF8 = "UTF-8";
+	
 	private static final String TEST_ID = "1044406323224";
 	
 	private static final String PROD_ID = "337835721184";
