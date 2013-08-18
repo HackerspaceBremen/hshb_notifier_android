@@ -175,6 +175,10 @@ public class GCMIntentService extends GCMBaseIntentService {
 		builder.setSmallIcon(icon);
 		builder.setTicker(notificationText);
 		builder.setWhen(when);
+		if(data.getMessage()!=null && data.getMessage().length()>0){
+			builder.setStyle(new NotificationCompat.BigTextStyle().setSummaryText(notificationText)
+	        .bigText("Nachricht: \n" + data.getMessage()));
+		}
 		if(!permanent){
 			builder.setAutoCancel(true);
 		 }

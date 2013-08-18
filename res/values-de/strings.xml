@@ -61,7 +61,7 @@
 	<string name="validate_login">Der Login-Name muss mindestens 4 Zeichen lang sein</string>
 	<string name="validate_pwd">Das Passwort muss mindestens 4 Zeichen lang sein</string>
 	<string name="about_icon">Das Logo welches im Google Play Store benutzt wird</string>
-	<string name="about_text">Diese App wurde für dem Hackerspace Bremen e.V. erstellt. Steve Liedtke hat diese App entwickelt. Der Quellcode kann auf Github eingesehen werden: https://github.com/HackerspaceBremen/hshb_notifier_android</string>
+	<string name="about_text">Diese App wurde für den Verein Hackerspace Bremen e.V. erstellt. Steve Liedtke hat diese App entwickelt. Der Quellcode kann auf Github eingesehen werden: https://github.com/HackerspaceBremen/hshb_notifier_android</string>
 	<string name="about_version">Version:</string>
 	<string name="about_title">Hackerspace Bremen Android App</string>
 	<string name="save_login">Passwort merken?</string>
