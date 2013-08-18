@@ -196,7 +196,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		if(permanent){
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 		}
-		mNotificationManager.notify(81543, notification);
+		mNotificationManager.notify(Constants.GCM_NOTIFICATION_ID, notification);
 	}
 	
 	private void updateAppWidget(Context context, SpaceData data) {

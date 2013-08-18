@@ -32,7 +32,8 @@
 	<string name="notification_status">Erlaube Benachrichtigungen</string>
 	<string name="settings">Einstellungen</string>
 	<string name="vibrate_enable">Erlaube Vibration</string>
-	<string name="permanent_notification_enable">Permanente \'Space offen\' Benachrichtigung</string>
+	<string name="permanent_notification_enable">Permanente  Benachrichtigung</string>
+	<string name="permanent_notification_description">Zeigt die Benachrichtigung dauerhaft, wenn der Space offen ist!</string>
 	<string name="status_message">Statusnachricht:</string>
 	<string name="data_error">Konnte Daten nicht abfragen!"</string>
 	<string name="connection_error">Es konnte keine Verbindung hergestellt werden! Stellen Sie eine Verbindung zum Internet her und versuchen Sie es erneut.</string>

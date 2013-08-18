@@ -16,44 +16,32 @@
  * Contributors:
  *     Steve Liedtke <sliedtke57@gmail.com>
  */
-package de.hackerspacebremen;
+package de.hackerspacebremen.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
-import android.os.Build;
+import android.content.Context;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.PreferenceFragment;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
+import de.hackerspacebremen.R;
 import de.hackerspacebremen.common.Constants;
-import de.hackerspacebremen.fragments.NotificationPreferenceFragment;
 
-public class SettingActivity extends PreferenceActivity{
+/**
+ * @author Steve
+ *
+ */
+@SuppressLint("NewApi")
+public class NotificationPreferenceFragment extends PreferenceFragment{
 
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            onCreatePreferenceActivity();
-        } else {
-            onCreatePreferenceFragment();
-        }
-    }
-	
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see android.preference.PreferenceFragment#onCreate(android.os.Bundle)
 	 */
-	@SuppressLint("NewApi")
-	private void onCreatePreferenceFragment() {
-		getFragmentManager().beginTransaction()
-        .replace(android.R.id.content, new NotificationPreferenceFragment())
-        .commit();
-	}
-
-	@SuppressWarnings("deprecation")
-    private void onCreatePreferenceActivity() {
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		final Preference pref = (Preference) findPreference("permanent_notification_preference");
 		pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -62,8 +50,8 @@ public class SettingActivity extends PreferenceActivity{
 			public boolean onPreferenceClick(final Preference preference) {
 				final CheckBoxPreference checkBox = (CheckBoxPreference) preference;
 				if(!checkBox.isChecked()){
-					final NotificationManager notificationManager = (NotificationManager) 
-							  getSystemService(NOTIFICATION_SERVICE);
+					final String ns = Context.NOTIFICATION_SERVICE;
+					final NotificationManager notificationManager = (NotificationManager) NotificationPreferenceFragment.this.getActivity().getSystemService(ns);
 					notificationManager.cancel(Constants.GCM_NOTIFICATION_ID);
 				}
 				return false;
