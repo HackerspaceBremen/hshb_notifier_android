@@ -67,10 +67,10 @@ public class StartActivity extends FragmentActivity {
 				&& this.getIntent().getAction()
 						.equals("android.intent.action.VIEW")) {
 			if(this.getIntent().getBooleanExtra("widget", false)){
-				this.manageFragment(FragmentState.CHANGE_SHOWN, null);
-			}else{
 				this.manageFragment(FragmentState.ONLY_STATUS,
 						null);
+			}else{
+				this.manageFragment(FragmentState.CHANGE_SHOWN, null);
 			}
 		} else {
 			if (savedInstanceState != null

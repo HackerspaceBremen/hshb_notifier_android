@@ -136,6 +136,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 						settings.getBoolean("permanent_notification_preference", false));
 			}
 			
+			updateDashClockWidget(context, data);
 			updateAppWidget(context, data);
 			
 		} catch (JSONException e) {
@@ -143,6 +144,8 @@ public class GCMIntentService extends GCMBaseIntentService {
 		}
 	}
 	
+	
+
 	public void displayNotification(final Context context, final SpaceData data,
 			final boolean vibrationEnabled, final boolean permanentNotification) throws JSONException {
 		String ns = Context.NOTIFICATION_SERVICE;
@@ -219,6 +222,14 @@ public class GCMIntentService extends GCMBaseIntentService {
         ComponentName componentName =new ComponentName(context, HackerspaceWidgetProvider.class);
         appWidgetManager.updateAppWidget(componentName, remoteViews);
     }
+	
+	/**
+	 * @param context
+	 * @param data
+	 */
+	private void updateDashClockWidget(Context context, SpaceData data) {
+		// TODO see issue 
+	}
 
 
 	@Override
