@@ -70,6 +70,11 @@
 	<string name="news">Neuigkeiten</string>
 	<string name="gcm_service_class">de.hackerspacebremen.gcm.GCMIntentService</string>
 	
+	<!-- DashClockWidget -->
+	<string name="extension_title">Hackerspace Bremen Widget</string>
+    <string name="extension_description">Zeigt den Status des Spaces in Bremen.</string>
+    <string name="title_settings">Widget Einstellungen</string>
+	
 	<!-- Values of support-v7 -->
 	<!-- Label for the "Done" button on the far left of action mode toolbars. -->
     <string name="abc_action_mode_done">Fertig</string>

@@ -69,4 +69,9 @@
 	<string name="map">Location</string>
 	<string name="news">News</string>
 	<string name="gcm_service_class">de.hackerspacebremen.gcm.GCMIntentService</string>
+	
+	<!-- DashClockWidget -->
+	<string name="extension_title">Hackerspace Bremen Widget</string>
+    <string name="extension_description">Displays the status of the space in Bremen(Germany).</string>
+    <string name="title_settings">Widget Settings</string>
 </resources>

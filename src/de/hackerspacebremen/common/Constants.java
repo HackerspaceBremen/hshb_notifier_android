@@ -27,7 +27,7 @@ public final class Constants {
 	
 	static{
 		// CHANGE HERE if you switch between prod and test
-		boolean prod = true;
+		boolean prod = false;
 		PROD = prod;
 		
 		SET_SENDER_ID(prod);
