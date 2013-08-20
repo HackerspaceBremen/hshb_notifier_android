@@ -19,10 +19,11 @@
  */
 package de.hackerspacebremen.gcm;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.UUID;
 
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +37,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -248,15 +248,15 @@ public class GCMIntentService extends GCMBaseIntentService {
 			this.httpReq = false;
 			this.getReq = false;
 			this.servletUrl = "v2/gcm/register";
-			this.postParams.add(new BasicNameValuePair("deviceId", Uri
-					.encode(deviceId)));
-			this.postParams.add(new BasicNameValuePair("registrationId", Uri
-					.encode(registrationId)));
 			try {
+				this.postParams.put("deviceId", URLEncoder.encode(deviceId, Constants.UTF8));
+				this.postParams.put("registrationId", URLEncoder.encode(registrationId, Constants.UTF8));
 				this.appVersionName = GCMIntentService.this.getPackageManager()
 						.getPackageInfo(GCMIntentService.this.getPackageName(), 0).versionName;
 			} catch (NameNotFoundException e) {
 				this.appVersionName = "??";
+			} catch (UnsupportedEncodingException e) {
+				Log.e(RegisterCommunication.class.getName(), "UnsupportedEncodingException occured: " + e.getMessage());
 			}
 		}
 
@@ -279,13 +279,14 @@ public class GCMIntentService extends GCMBaseIntentService {
 			this.httpReq = false;
 			this.getReq = false;
 			this.servletUrl = "v2/gcm/unregister";
-			this.postParams.add(new BasicNameValuePair("deviceId", Uri
-					.encode(deviceId)));
 			try {
+				this.postParams.put("deviceId", URLEncoder.encode(deviceId,Constants.UTF8));
 				this.appVersionName = GCMIntentService.this.getPackageManager()
 						.getPackageInfo(GCMIntentService.this.getPackageName(), 0).versionName;
 			} catch (NameNotFoundException e) {
 				this.appVersionName = "??";
+			} catch (UnsupportedEncodingException e) {
+				Log.e(UnregisterCommunication.class.getName(), "UnsupportedEncodingException occured: " + e.getMessage());
 			}
 		}
 

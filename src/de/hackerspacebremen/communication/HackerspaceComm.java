@@ -1,7 +1,4 @@
 /*
- * TODO tell that the Communication class of HS Bremen Guide was used.
- */
-/*
  * Hackerspace Bremen Android App - An Open-Space-Notifier for Android
  * 
  * Copyright (C) 2012 Steve Liedtke <sliedtke57@gmail.com>
@@ -23,18 +20,17 @@
 package de.hackerspacebremen.communication;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpParams;
@@ -43,6 +39,9 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.os.Build;
+
+import com.squareup.okhttp.OkHttpClient;
+
 import de.hackerspacebremen.common.Constants;
 
 public abstract class HackerspaceComm extends
@@ -61,6 +60,8 @@ public abstract class HackerspaceComm extends
 	private static final String HTTP = "http://";
 
 	private static final String HTTPS = "https://";
+
+	private OkHttpClient client = new OkHttpClient();
 
 	/**
 	 * tells if a get request is performed. if false a post request is
@@ -90,10 +91,11 @@ public abstract class HackerspaceComm extends
 	/**
 	 * params for POST request.
 	 */
-	protected List<NameValuePair> postParams;
+	protected Map<String,String> postParams;
 
 	public HackerspaceComm() {
-		postParams = new ArrayList<NameValuePair>(2);
+//		postParams = new ArrayList<NameValuePair>(2);
+		postParams = new HashMap<String, String>();
 	}
 
 	protected final JSONObject doInBackground(final JSONObject... data) {
@@ -105,7 +107,8 @@ public abstract class HackerspaceComm extends
 		HttpParams httpBodyParams = httpclient.getParams();
 		httpBodyParams.setParameter(CoreProtocolPNames.USER_AGENT, userAgent);
 
-		HttpResponse response = null;
+		String response = null;
+		int responseCode = 0;
 		String httpOrS = HTTPS;
 		if (httpReq) {
 			httpOrS = HTTP;
@@ -113,9 +116,23 @@ public abstract class HackerspaceComm extends
 
 		if (getReq) {
 			try {
-				HttpGet httpget = new HttpGet(httpOrS + SERVERURL
-						+ this.servletUrl + "?" + getParams);
-				response = httpclient.execute(httpget);
+				final HttpURLConnection connection = client
+						.open(new URL(httpOrS + SERVERURL + this.servletUrl
+								+ "?" + getParams));
+				InputStream in = null;
+				try {
+					// Read the response.
+					in = connection.getInputStream();
+					final byte[] resp = readFully(in);
+					response = new String(resp, Constants.UTF8);
+					responseCode = connection.getResponseCode();
+				} finally {
+					if (in != null)
+						in.close();
+				}
+				// HttpGet httpget = new HttpGet(httpOrS + SERVERURL
+				// + this.servletUrl + "?" + getParams);
+				// response = httpclient.execute(httpget);
 			} catch (IOException e) {
 				errorcode = -1;
 				cancel(false);
@@ -123,10 +140,32 @@ public abstract class HackerspaceComm extends
 			}
 		} else {
 			try {
-				HttpPost httpPost = new HttpPost(httpOrS + SERVERURL
-						+ this.servletUrl);
-				httpPost.setEntity(new UrlEncodedFormEntity(postParams, "UTF-8"));
-				response = httpclient.execute(httpPost);
+				HttpURLConnection connection = client.open(new URL(httpOrS
+						+ SERVERURL + this.servletUrl));
+				OutputStream out = null;
+				InputStream in = null;
+				try {
+					// Write the request.
+					connection.setRequestMethod("POST");
+					out = connection.getOutputStream();
+					out.write(createBody().getBytes(Constants.UTF8));
+					out.close();
+
+					responseCode = connection.getResponseCode();
+					in = connection.getInputStream();
+					response = readFirstLine(in);
+				} finally {
+					// Clean up.
+					if (out != null)
+						out.close();
+					if (in != null)
+						in.close();
+				}
+				// HttpPost httpPost = new HttpPost(httpOrS + SERVERURL
+				// + this.servletUrl);
+				// httpPost.setEntity(new UrlEncodedFormEntity(postParams,
+				// "UTF-8"));
+				// response = httpclient.execute(httpPost);
 
 			} catch (IOException e) {
 				errorcode = -1;
@@ -135,13 +174,12 @@ public abstract class HackerspaceComm extends
 			}
 		}
 
-		httpState = response.getStatusLine().getStatusCode();
+		httpState = responseCode;
 
 		JSONObject resData = new JSONObject();
 		String resString = "";
 		try {
-			resString = inputStreamToString(response.getEntity().getContent())
-					.toString();
+			resString = response;
 			resData = new JSONObject(resString);
 			if (httpState != 200) {
 				errorcode = resData.getInt("CODE");
@@ -149,14 +187,6 @@ public abstract class HackerspaceComm extends
 				return null;
 			}
 
-		} catch (IOException e) {
-			if (httpState != 200) {
-				errorcode = httpState;
-			} else {
-				errorcode = -1;
-			}
-			cancel(false);
-			return null;
 		} catch (JSONException e) {
 			if (httpState != 200) {
 				errorcode = httpState;
@@ -167,35 +197,64 @@ public abstract class HackerspaceComm extends
 			return null;
 		}
 
-		return resData;	
+		return resData;
 	}
-
-	/**
-	 * Get the content from a HttpResponse (or any InputStream) as a String.
-	 * Quelle:
-	 * http://www.androidsnippets.com/get-the-content-from-a-httpresponse
-	 * -or-any-inputstream-as-a-string
-	 * 
-	 * @param is
-	 *            input stream
-	 * @return the readed string
-	 * @throws IOException
-	 *             when something failed with inputstream
-	 */
-	private StringBuilder inputStreamToString(final InputStream is)
-			throws IOException {
-		String line = "";
-		StringBuilder total = new StringBuilder();
-
-		// Wrap a BufferedReader around the InputStream
-		BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-
-		// Read response until the end
-		while ((line = rd.readLine()) != null) {
-			total.append(line);
+	
+	private String createBody(){
+		final StringBuilder sBuilder = new StringBuilder();
+		boolean first = true;
+		for(final String key : postParams.keySet()){
+			if(first){
+				first = false;
+			}else{
+				sBuilder.append("&");
+			}
+			sBuilder.append(key+"="+postParams.get(key));
 		}
-
-		// Return full string
-		return total;
+		return sBuilder.toString();
 	}
+
+	private byte[] readFully(InputStream in) throws IOException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		for (int count; (count = in.read(buffer)) != -1;) {
+			out.write(buffer, 0, count);
+		}
+		return out.toByteArray();
+	}
+
+	private String readFirstLine(InputStream in) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in,
+				Constants.UTF8));
+		return reader.readLine();
+	}
+
+//	/**
+//	 * Get the content from a HttpResponse (or any InputStream) as a String.
+//	 * Quelle:
+//	 * http://www.androidsnippets.com/get-the-content-from-a-httpresponse
+//	 * -or-any-inputstream-as-a-string
+//	 * 
+//	 * @param is
+//	 *            input stream
+//	 * @return the readed string
+//	 * @throws IOException
+//	 *             when something failed with inputstream
+//	 */
+//	private StringBuilder inputStreamToString(final InputStream is)
+//			throws IOException {
+//		String line = "";
+//		StringBuilder total = new StringBuilder();
+//
+//		// Wrap a BufferedReader around the InputStream
+//		BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+//
+//		// Read response until the end
+//		while ((line = rd.readLine()) != null) {
+//			total.append(line);
+//		}
+//
+//		// Return full string
+//		return total;
+//	}
 }

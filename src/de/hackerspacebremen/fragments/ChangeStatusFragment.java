@@ -22,7 +22,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Date;
 
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,8 +52,8 @@ import de.hackerspacebremen.valueobjects.ChangeData;
 import de.hackerspacebremen.valueobjects.SpaceData;
 import de.hackerspacebremen.valueobjects.parser.ChangeDataJsonParser;
 import de.hackerspacebremen.viewholders.ChangeViewHolder;
-import de.neofonie.mobile.app.android.widget.crouton.Crouton;
-import de.neofonie.mobile.app.android.widget.crouton.Style;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 /**
  * Here you can change the status of the space.
@@ -320,16 +319,15 @@ public final class ChangeStatusFragment extends Fragment {
 			
 			try{
 				this.postParams
-						.add(new BasicNameValuePair("name", URLEncoder.encode(name,Constants.UTF8)));
+						.put("name", URLEncoder.encode(name,Constants.UTF8));
 				this.postParams
-						.add(new BasicNameValuePair("pass", URLEncoder.encode(pass, Constants.UTF8)));
+						.put("pass", URLEncoder.encode(pass, Constants.UTF8));
 				if (message != null && message.length() > 0) {
-					this.postParams.add(new BasicNameValuePair("message", URLEncoder.encode(message, Constants.UTF8)));
+					this.postParams.put("message", URLEncoder.encode(message, Constants.UTF8));
 				}
 			}catch(UnsupportedEncodingException e){
 				Log.e(ChangeCommunication.class.getName(), "UnsupportedEncodingException occured: " + e.getMessage());
 			}
-			this.postParams.add(new BasicNameValuePair("encoded", "true"));
 			
 			try {
 				this.appVersionName = getActivity().getPackageManager()
