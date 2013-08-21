@@ -17,15 +17,16 @@
    Contributors:
        Steve Liedtke <sliedtke57@gmail.com>
 -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/refresh"
           android:icon="@drawable/view_refresh"
           android:title="@string/refresh"
-          android:showAsAction="ifRoom"/>
+          yourapp:showAsAction="ifRoom"/>
     <item android:id="@+id/change"
           android:icon="@drawable/keys"
           android:title="@string/change"
-          android:showAsAction="ifRoom"/>
+          yourapp:showAsAction="ifRoom"/>
 <!--     <item android:id="@+id/map" -->
 <!--           android:icon="@drawable/map" -->
 <!--           android:title="@string/map" -->
@@ -37,9 +38,9 @@
     <item android:id="@+id/about"
           android:icon="@drawable/info"
           android:title="@string/about"
-          android:showAsAction="never"/>
+          yourapp:showAsAction="never"/>
     <item android:id="@+id/settings"
           android:icon="@drawable/settings_green"
           android:title="@string/settings"
-          android:showAsAction="never"/>
+          yourapp:showAsAction="never"/>
 </menu>

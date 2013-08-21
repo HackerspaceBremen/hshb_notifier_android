@@ -24,8 +24,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,7 +43,7 @@ import de.hackerspacebremen.fragments.StatusFragment;
 import de.hackerspacebremen.valueobjects.parser.ChangeDataJsonParser;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 
-public class StartActivity extends FragmentActivity {
+public class StartActivity extends ActionBarActivity {
 
 	private FragmentState state = null;
 
@@ -136,13 +136,16 @@ public class StartActivity extends FragmentActivity {
 		final MenuInflater inflater = this.getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
 		if(this.state == FragmentState.CHANGE_SHOWN){
-			menu.getItem(1).setVisible(false);
-		}else if(this.state == FragmentState.MAP_SHOWN){
+			menu.findItem(R.id.change).setVisible(false);
+		}
+		
+		/*else if(this.state == FragmentState.MAP_SHOWN){
 			menu.getItem(2).setVisible(false);
 		}else if(this.state == FragmentState.NEWS_SHOWN){
 			// TODO change this to 3 when mapfragment is added
-			menu.getItem(2).setVisible(false);
-		}
+//			menu.getItem(2).setVisible(false);
+		}*/
+		
 		return super.onCreateOptionsMenu(menu);
 	}
 
