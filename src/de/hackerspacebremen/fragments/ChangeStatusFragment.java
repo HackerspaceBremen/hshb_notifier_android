@@ -55,8 +55,8 @@ import de.hackerspacebremen.valueobjects.ChangeData;
 import de.hackerspacebremen.valueobjects.SpaceData;
 import de.hackerspacebremen.valueobjects.parser.ChangeDataJsonParser;
 import de.hackerspacebremen.viewholders.ChangeViewHolder;
-import de.neofonie.mobile.app.android.widget.crouton.Crouton;
-import de.neofonie.mobile.app.android.widget.crouton.Style;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 /**
  * Here you can change the status of the space.
