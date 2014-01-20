@@ -6,3 +6,7 @@ local.properties
 
 # IntelliJ project
 *.iml
+.idea/
+
+# Gradle
+.gradle/
