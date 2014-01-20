@@ -43,7 +43,7 @@ import de.hackerspacebremen.fragments.EmptyFragment;
 import de.hackerspacebremen.fragments.NewsFragment;
 import de.hackerspacebremen.fragments.StatusFragment;
 import de.hackerspacebremen.valueobjects.parser.ChangeDataJsonParser;
-import de.neofonie.mobile.app.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 public class StartActivity extends SherlockFragmentActivity {
 
