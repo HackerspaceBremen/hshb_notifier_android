@@ -17,7 +17,7 @@
  *     Steve Liedtke <sliedtke57@gmail.com>
  *     Matthias Friedrich <mtthsfrdrch@gmail.com>
  */
-package de.hackerspacebremen.gcm;
+package de.hackerspacebremen.push;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -43,7 +43,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.google.android.gcm.GCMBaseIntentService;
+import com.nokia.push.PushBaseIntentService;
 
 import de.greenrobot.event.EventBus;
 import de.hackerspacebremen.R;
@@ -57,16 +57,16 @@ import de.hackerspacebremen.valueobjects.SpaceData;
 import de.hackerspacebremen.valueobjects.parser.SpaceDataJsonParser;
 import de.hackerspacebremen.widgets.HackerspaceWidgetProvider;
 
-public class GCMIntentService extends GCMBaseIntentService {
+public class PushIntentService extends PushBaseIntentService {
 
 	private static String uniqueID = null;
 	private static final String PREF_UNIQUE_ID = "hshb-android-app";
 	
-	public GCMIntentService(){
+	public PushIntentService(){
 	    super(Constants.SENDER_ID);
 	}
 	
-	protected GCMIntentService(final String senderId) {
+	protected PushIntentService(final String senderId) {
 		super(senderId);
 	}
 
@@ -74,19 +74,19 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 	@Override
 	protected void onRegistered(final Context context, final String regId) {
-		Log.i("GCM", "Received registration ID");
+		Log.i("Nokia Push", "Received registration ID");
 		
 		final String deviceId = this.getDeviceId(context);
 		final RegisterCommunication comm = new RegisterCommunication(
 				regId, deviceId);
 		comm.execute();
 		
-		final SharedPreferences settings = context.getSharedPreferences("gcm", 0);
-	    final SharedPreferences.Editor editor = settings.edit();
+		final SharedPreferences settings = context.getSharedPreferences("nokiapush", 0);
+	    final Editor editor = settings.edit();
 	    editor.putString("registrationId", regId);
 	    editor.putString("deviceId", deviceId);
 	    editor.commit();
-	    Log.i("GCM", "Saved registration id and device id to the shared preferences");
+	    Log.i("Nokia Push", "Saved registration id and device id to the shared preferences");
 	}
 	
 	private String getDeviceId(Context context) {
@@ -112,9 +112,9 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 	@Override
 	protected void onMessage(final Context context, final Intent intent) {
-		Log.w("GCM-Message", "Received message");
+		Log.w("Nokia Push-Message", "Received message");
 		final String payload = intent.getStringExtra("payload");
-		Log.d("GCM-Message", "dmControl: payload = " + payload);
+		Log.d("Nokia Push-Message", "dmControl: payload = " + payload);
 		try {
 		    
 			
@@ -140,7 +140,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 			updateAppWidget(context, data);
 			
 		} catch (JSONException e) {
-			Log.e("GCM-Message", "JSON-Exception occured!");
+			Log.e("NokiaPush-Message", "JSON-Exception occured!");
 		}
 	}
 	
@@ -199,7 +199,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		if(permanent){
 			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 		}
-		mNotificationManager.notify(Constants.GCM_NOTIFICATION_ID, notification);
+		mNotificationManager.notify(Constants.NOTIFICATION_ID, notification);
 	}
 	
 	private void updateAppWidget(Context context, SpaceData data) {
@@ -234,7 +234,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 	@Override
 	protected void onUnregistered(final Context context, final String regId) {
-		final SharedPreferences settings = context.getSharedPreferences("gcm", 0);
+		final SharedPreferences settings = context.getSharedPreferences("nokiapush", 0);
 		final String deviceId = settings.getString("deviceId", this.getDeviceId(context));
 		final UnregisterCommunication comm = new UnregisterCommunication(
 				deviceId);
@@ -247,12 +247,12 @@ public class GCMIntentService extends GCMBaseIntentService {
 			super();
 			this.httpReq = false;
 			this.getReq = false;
-			this.servletUrl = "v2/gcm/register";
+			this.servletUrl = "v2/nokiax/register";
 			try {
 				this.postParams.put("deviceId", URLEncoder.encode(deviceId, Constants.UTF8));
 				this.postParams.put("registrationId", URLEncoder.encode(registrationId, Constants.UTF8));
-				this.appVersionName = GCMIntentService.this.getPackageManager()
-						.getPackageInfo(GCMIntentService.this.getPackageName(), 0).versionName;
+				this.appVersionName = PushIntentService.this.getPackageManager()
+						.getPackageInfo(PushIntentService.this.getPackageName(), 0).versionName;
 			} catch (NameNotFoundException e) {
 				this.appVersionName = "??";
 			} catch (UnsupportedEncodingException e) {
@@ -262,13 +262,13 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 		@Override
 		protected void onCancelled() {
-			Log.e("GCM Register", "Registration ID couldn't be sent to server");
+			Log.e("Nokia Push Register", "Registration ID couldn't be sent to server");
 			// TODO handle cancel
 		}
 
 		@Override
 		protected void onPostExecute(JSONObject result) {
-			Log.i("GCM Register", "Sent registration ID to server");
+			Log.i("Nokia Push Register", "Sent registration ID to server");
 			// TODO handle result
 		}
 	}
@@ -278,11 +278,11 @@ public class GCMIntentService extends GCMBaseIntentService {
 			super();
 			this.httpReq = false;
 			this.getReq = false;
-			this.servletUrl = "v2/gcm/unregister";
+			this.servletUrl = "v2/nokiax/unregister";
 			try {
 				this.postParams.put("deviceId", URLEncoder.encode(deviceId,Constants.UTF8));
-				this.appVersionName = GCMIntentService.this.getPackageManager()
-						.getPackageInfo(GCMIntentService.this.getPackageName(), 0).versionName;
+				this.appVersionName = PushIntentService.this.getPackageManager()
+						.getPackageInfo(PushIntentService.this.getPackageName(), 0).versionName;
 			} catch (NameNotFoundException e) {
 				this.appVersionName = "??";
 			} catch (UnsupportedEncodingException e) {
@@ -292,13 +292,13 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 		@Override
 		protected void onCancelled() {
-			Log.e("GCM Unregister", "Unregistering wasn't successfull!");
+			Log.e("Nokia Push Unregister", "Unregistering wasn't successfull!");
 			// TODO handle cancel
 		}
 
 		@Override
 		protected void onPostExecute(JSONObject result) {
-			Log.i("GCM Unregister", "You successfully unregistered!");
+			Log.i("Nokia Push Unregister", "You successfully unregistered!");
 			// TODO handle result
 		}
 	}

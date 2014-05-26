@@ -64,7 +64,7 @@ public class SettingActivity extends PreferenceActivity{
 				if(!checkBox.isChecked()){
 					final NotificationManager notificationManager = (NotificationManager) 
 							  getSystemService(NOTIFICATION_SERVICE);
-					notificationManager.cancel(Constants.GCM_NOTIFICATION_ID);
+					notificationManager.cancel(Constants.NOTIFICATION_ID);
 				}
 				return false;
 			}

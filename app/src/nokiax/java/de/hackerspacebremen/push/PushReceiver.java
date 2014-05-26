@@ -16,11 +16,11 @@
  * Contributors:
  *     Steve Liedtke <sliedtke57@gmail.com>
  */
-package de.hackerspacebremen.gcm;
+package de.hackerspacebremen.push;
 
 import android.content.Context;
 
-import com.google.android.gcm.GCMBroadcastReceiver;
+import com.nokia.push.PushBroadcastReceiver;
 
 import de.hackerspacebremen.R;
 
@@ -28,10 +28,10 @@ import de.hackerspacebremen.R;
  * @author Steve
  *
  */
-public class GCMReceiver extends GCMBroadcastReceiver{
+public class PushReceiver extends PushBroadcastReceiver{
 
 	@Override
-	protected String getGCMIntentServiceClassName(Context context) {
-		return context.getString(R.string.gcm_service_class);
+	protected String getPushIntentServiceClassName(Context context) {
+		return context.getString(R.string.intent_service_class);
 	}
 }

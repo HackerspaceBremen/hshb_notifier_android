@@ -68,7 +68,7 @@
 	<string name="save_login">Passwort merken?</string>
 	<string name="map">Standort</string>
 	<string name="news">Neuigkeiten</string>
-	<string name="gcm_service_class">de.hackerspacebremen.gcm.GCMIntentService</string>
+	<string name="intent_service_class">de.hackerspacebremen.gcm.GCMIntentService</string>
 	
 	<!-- DashClockWidget -->
 	<string name="extension_title">Hackerspace Bremen Widget</string>

@@ -52,7 +52,7 @@ public final class Constants {
 	
 	private static final String PROD_ID = "337835721184";
 	
-	public static final int GCM_NOTIFICATION_ID = 81543;
+	public static final int NOTIFICATION_ID = 81543;
 	
 	private static void SET_SENDER_ID(boolean prod){
 		if(prod){

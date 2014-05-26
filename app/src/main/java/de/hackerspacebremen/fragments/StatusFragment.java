@@ -43,8 +43,6 @@ import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.google.android.gcm.GCMRegistrar;
-
 import de.greenrobot.event.EventBus;
 import de.hackerspacebremen.HackerspaceApplication;
 import de.hackerspacebremen.R;
@@ -53,6 +51,7 @@ import de.hackerspacebremen.communication.HackerspaceComm;
 import de.hackerspacebremen.event.DataEvent;
 import de.hackerspacebremen.event.RefreshEvent;
 import de.hackerspacebremen.format.SpeakingDateFormat;
+import de.hackerspacebremen.push.NotificationRegistry;
 import de.hackerspacebremen.valueobjects.SpaceData;
 import de.hackerspacebremen.valueobjects.parser.SpaceDataJsonParser;
 import de.hackerspacebremen.viewholders.StatusViewHolder;
@@ -68,7 +67,8 @@ public class StatusFragment extends Fragment {
 
 	private StatusCommunication comm = null;
 	private boolean commDone = true;
-	
+
+    private NotificationRegistry notificationRegistry;
 
 	/*
 	 * (non-Javadoc)
@@ -167,7 +167,10 @@ public class StatusFragment extends Fragment {
 		if (this.spaceData == null) {
 			this.startAnimation();
 			this.startStatusCommunication();
-			this.register();
+			if(notificationRegistry == null){
+                this.notificationRegistry = new NotificationRegistry(this.getActivity());
+            }
+            this.notificationRegistry.register();
 		} else {
 			this.outputStatus(this.spaceData);
 		}
@@ -230,15 +233,6 @@ public class StatusFragment extends Fragment {
 				statusAnimation.start();
 			}
 		});
-	}
-
-	private void register() {
-		GCMRegistrar.checkDevice(this.getActivity());
-		GCMRegistrar.checkManifest(this.getActivity());
-		String regId = GCMRegistrar.getRegistrationId(this.getActivity());
-		if (regId.equals("")) {
-			GCMRegistrar.register(this.getActivity(), Constants.SENDER_ID);
-		}
 	}
 
 	private void updateAppWidget(SpaceData data) {

@@ -52,7 +52,7 @@ public class NotificationPreferenceFragment extends PreferenceFragment{
 				if(!checkBox.isChecked()){
 					final String ns = Context.NOTIFICATION_SERVICE;
 					final NotificationManager notificationManager = (NotificationManager) NotificationPreferenceFragment.this.getActivity().getSystemService(ns);
-					notificationManager.cancel(Constants.GCM_NOTIFICATION_ID);
+					notificationManager.cancel(Constants.NOTIFICATION_ID);
 				}
 				return false;
 			}

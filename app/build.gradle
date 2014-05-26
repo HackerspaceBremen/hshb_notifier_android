@@ -2,7 +2,7 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    buildToolsVersion '19.0.3'
 
     defaultConfig {
         minSdkVersion 8
@@ -21,9 +21,31 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+
+    productFlavors {
+        nokiax {
+            packageName 'de.hackerspacebremen.nokiax'
+            versionName android.defaultConfig.versionName + "-nokiax"
+        }
+        gplay {
+            packageName 'de.hackerspacebremen'
+            versionName android.defaultConfig.versionName + "-gplay"
+        }
+        nopush{
+            packageName 'de.hackerspacebremen.nopush'
+            versionName android.defaultConfig.versionName + "-nopush"
+        }
+    }
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:+'
+    compile 'com.squareup.dagger:dagger:1.2.1'
+    compile 'de.greenrobot:eventbus:2.2.0'
+    compile 'de.keyboardsurfer.android.widget:crouton:1.8.4'
+    compile 'joda-time:joda-time:2.3'
+    compile 'org.joda:joda-convert:1.6'
+    compile 'com.squareup.okhttp:okhttp:1.5.4'
+    compile 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
