@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.hackerspacebremen">
+
+    <uses-permission android:name="com.nokia.pushnotifications.permission.RECEIVE" />
+
+    <application
+        android:name=".HackerspaceApplication">
+        <receiver
+            android:name=".push.PushReceiver"
+            android:permission="com.nokia.pushnotifications.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.nokia.pushnotifications.intent.RECEIVE" />
+                <action android:name="com.nokia.pushnotifications.intent.REGISTRATION" />
+
+                <category android:name="de.hackerspacebremen" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+    <service android:name=".push.PushIntentService" />
+</manifest>

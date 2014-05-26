@@ -19,3 +19,8 @@ local.properties
 .classpath
 .project
 /proguard
+/.idea
+/.classpath
+/.project
+/.gradle
+/build
