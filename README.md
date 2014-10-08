@@ -8,9 +8,9 @@ Used Technologies
 
 The developed android app uses the following technologies or libraries:
 
-* Actionbar Sherlock
-* Google Cloud Messaging
-* Modification of the Communication-Class of HS-Bremen-Guide
+* [Actionbar Sherlock](http://actionbarsherlock.com)
+* [Google Cloud Messaging](http://developer.android.com/guide/google/gcm/index.html)
+* [Modification of the Communication-Class of HS-Bremen-Guide](http://code.google.com/p/hs-bremen-guide/)
 
 Needed to use the app
 =====================
