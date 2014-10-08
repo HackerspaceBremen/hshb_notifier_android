@@ -15,8 +15,8 @@ The developed android app uses the following technologies or libraries:
 Needed to use the app
 =====================
 
-Minimum android version of 2.1 (the older version 0.1 only supports minimum version of 2.2)
-Google account on the device (not rooted devices automatically have an account)
+* Minimum android version of 2.1 (the older version 0.1 only supports minimum version of 2.2)
+* Google account on the device (not rooted devices automatically have an account)
 
 Developed By
 ============
