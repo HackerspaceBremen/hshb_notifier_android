@@ -3,6 +3,21 @@ hshb_notifier_android
 
 This repository holds the source code of the open space notifier android app.
 
+Used Technologies
+=================
+
+The developed android app uses the following technologies or libraries:
+
+* Actionbar Sherlock
+* Google Cloud Messaging
+* Modification of the Communication-Class of HS-Bremen-Guide
+
+Needed to use the app
+=====================
+
+Minimum android version of 2.1 (the older version 0.1 only supports minimum version of 2.2)
+Google account on the device (not rooted devices automatically have an account)
+
 Developed By
 ============
 
