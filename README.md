@@ -18,6 +18,12 @@ Needed to use the app
 * Minimum android version of 2.1 (the older version 0.1 only supports minimum version of 2.2)
 * Google account on the device (not rooted devices automatically have an account)
 
+
+Downloads
+=========
+
+The newest version of the android app can be found in the [Google Play Store](https://play.google.com/store/apps/details?id=de.hackerspacebremen).
+
 Developed By
 ============
 
